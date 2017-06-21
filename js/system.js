@@ -180,15 +180,36 @@
 
 //planety-------------------------------------------------------------------------------------------
 
-    var mercury = planets(new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture("./textures/mercurymap.jpg")}), 0.05 * 10, 50, 50);
-    var venus = planets(new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture("./textures/venusmap.jpg")}), 0.12 * 10, 50, 50);
-    var earth = planets(new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture("./textures/earthmap1k.jpg")}), 0.13 * 10, 50, 50);
-    var mars = planets(new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture("./textures/marsmap1k.jpg")}), 0.07 * 10, 50, 50);
-    var jupiter = planets(new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture("./textures/jupitermap.jpg")}), 1.43 * 1.5, 50, 50);
-    var saturn = planets(new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture("./textures/saturnmap.jpg")}), 1.4 * 1.5, 50, 50);
-    var uranus = planets(new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture("./textures/uranusmap.jpg")}), 0.5 * 2, 50, 50);
-    var neptune = planets(new THREE.MeshLambertMaterial({map: THREE.ImageUtils.loadTexture("./textures/neptunemap.jpg")}), 4.8 / 2, 50, 50);
+    var loader = new THREE.TextureLoader();
 
+    loader.load(
+        // resource URL
+        './textures/mercurymap.jpg',
+        // Function when resource is loaded
+        function ( texture ) {
+            // do something with the texture
+            var material = new THREE.MeshLambertMaterial( {
+                map: texture
+            } );
+        },
+        // Function called when download progresses
+        function ( xhr ) {
+            console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+        },
+        // Function called when download errors
+        function ( xhr ) {
+            console.log( 'An error happened' );
+        }
+    );
+
+    var mercury = planets(new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load( "./textures/mercurymap.jpg")}), 0.05 * 10, 50, 50);
+    var venus = planets(new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("./textures/venusmap.jpg")}), 0.12 * 10, 50, 50);
+    var earth = planets(new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("./textures/earthmap1k.jpg")}), 0.13 * 10, 50, 50);
+    var mars = planets(new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("./textures/marsmap1k.jpg")}), 0.07 * 10, 50, 50);
+    var jupiter = planets(new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("./textures/jupitermap.jpg")}), 1.43 * 1.5, 50, 50);
+    var saturn = planets(new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("./textures/saturnmap.jpg")}), 1.4 * 1.5, 50, 50);
+    var uranus = planets(new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("./textures/uranusmap.jpg")}), 0.5 * 2, 50, 50);
+    var neptune = planets(new THREE.MeshLambertMaterial({map: new THREE.TextureLoader().load("./textures/neptunemap.jpg")}), 4.8 / 2, 50, 50);
 
 //Slonce-------------------------------------------------------------------------------------------
 
